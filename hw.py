@@ -2,8 +2,11 @@ import argparse
 from bson.objectid import ObjectId
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from dotenv import dotenv_values
 
-uri = f"mongodb+srv://serafim:19serafim84@cluster0.hyo17fr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+config = dotenv_values(".env_mongo")
+
+uri = f"mongodb+srv://{config['USER_MDB']}:{config['PASSWORD_MDB']}@cluster0.hyo17fr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client.HW_06
